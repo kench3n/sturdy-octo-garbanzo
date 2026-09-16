@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Color + Margin + Background – Practice</title>
+  <style>
+    body {
+      /* Page background: plain navy, nothing fancy */
+      background: #2b2d42;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+    .container {
+      /* Container: flexbox row that wraps, with gap spacing cards apart */
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1100px;
+    }
+    .card {
+      width: 240px;
+      min-height: 260px;
+      border-radius: 6px;
+      /* Fallback background: overridden per-card below by nth-child */
+      background-color: #999;
+
+      /* You can also try:
+         background: linear-gradient(to bottom, #......, #......);
+      */
+    }
+    /* Each card gets its own color - just picked ones I liked */
+    .card:nth-child(1) { background-color: tomato; }
+    .card:nth-child(2) { background-color: seagreen; }
+    .card:nth-child(3) { background: linear-gradient(to bottom, #4a90e2, #145da0); }
+    .card:nth-child(4) { background-color: #d1495b; }
+    .card-content {
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+    h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.3rem;
+    }
+    p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    /* Optional bonus: hover effect */
+    .card:hover {
+      transform: translateY(-8px);
+      transition: transform 0.25s ease;
+    }
+
+    /* ────────────── Practice #2 ────────────── */
+    /* .card2: 400x200 content area, 20px inner gap, 8px dark slate gray
+       border, 30px outer space. box-sizing: border-box keeps the total
+       width at 400px instead of growing past it. */
+    .card2 {
+      width: 400px;
+      height: 200px;
+      padding: 20px;
+      border: 8px solid darkslategray;
+      margin: 30px;
+      box-sizing: border-box;
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-content">
+        <h2>Summer</h2>
+        <p>Warm days, cold drinks, long evenings</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <h2>Forest</h2>
+        <p>Green, calm, moss and mystery</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <h2>Ocean</h2>
+        <p>Deep blue, waves, freedom</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <h2>Sunset</h2>
+        <p>Orange, pink, magic hour</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Practice #2 demo: shows the .card2 box built above -->
+  <div class="card2">
+    <p>This is .card2 - 400x200 content area, 20px padding, 8px dark slate gray border, 30px margin, box-sizing: border-box</p>
+  </div>
+</body>
+</html>
