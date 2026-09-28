@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Travel Bucket List</title>
+
+  <style>
+    /* body: background, text color, Verdana */
+    body {
+      font-family: Verdana, Geneva, sans-serif;
+      background-color: #e8f1f8;
+      color: #222222;
+      margin: 20px;
+      line-height: 1.6;
+    }
+
+    /* Georgia for the headings */
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #ffffff;
+      background-color: #1d4e89;
+      text-align: center;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 4px solid #0b2545;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #c1121f;
+      border-bottom: 2px solid #c1121f;
+      margin-top: 30px;
+    }
+
+    /* Courier New for the table */
+    table {
+      font-family: "Courier New", Courier, monospace;
+      border-collapse: collapse;
+      margin: 15px 0;
+    }
+    th {
+      background-color: #1d4e89;
+      color: #ffffff;
+      border: 2px solid #0b2545;
+      padding: 8px;
+    }
+    td {
+      background-color: #ffffff;
+      border: 2px solid #0b2545;
+      padding: 8px;
+    }
+
+    /* cursive font for the tagline */
+    .tagline {
+      font-family: "Brush Script MT", cursive;
+      font-size: 24px;
+      color: #1d4e89;
+      text-align: center;
+    }
+
+    /* pictures */
+    /* table that holds the two photos */
+    .photos {
+      width: 100%;
+      font-family: Verdana, Geneva, sans-serif;
+      border-collapse: separate;
+      border-spacing: 10px;
+    }
+    .photos td {
+      width: 50%;
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      text-align: center;
+    }
+    /* photos line up at the bottom */
+    .photo-row td {
+      vertical-align: bottom;
+    }
+    /* captions line up at the top */
+    .caption-row td {
+      vertical-align: top;
+      padding-top: 10px;
+    }
+    img {
+      width: 100%;
+      border: 4px solid #0b2545;
+      display: block;
+    }
+
+    /* list boxes */
+    ul {
+      background-color: #fff3cd;
+      border: 2px solid #e9a820;
+      padding: 15px 15px 15px 40px;
+    }
+    ol {
+      background-color: #d8f0d8;
+      border: 2px solid #2f855a;
+      padding: 15px 15px 15px 40px;
+    }
+
+    /* links and hover */
+    a {
+      color: #1d4e89;
+    }
+    a:hover {
+      color: #ffffff;
+      background-color: #c1121f;
+    }
+  </style>
+</head>
+
+<body>
+
+  <a id="top"></a>
+  <h1>My Travel Bucket List</h1>
+  <p class="tagline">Wish you were here... someday</p>
+
+  <!-- intro -->
+  <h2>Why I Love to Travel</h2>
+  <p>
+    I love to travel because it lets me see how differently people live, eat, and
+    think. Every trip gets me out of my routine and gives me new stories to tell.
+    I always come home with a longer list of places I still want to visit.
+  </p>
+
+  <!-- photos -->
+  <h2>Two Places I Want to See</h2>
+  <!-- photos in the top row, captions in the bottom row -->
+  <table class="photos">
+    <tr class="photo-row">
+      <td>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg"
+             alt="Orange torii gates at Fushimi Inari Shrine in Kyoto, Japan">
+      </td>
+      <td>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Ha_Long_Bay_in_2019.jpg/960px-Ha_Long_Bay_in_2019.jpg"
+             alt="Boats floating among green limestone islands in Ha Long Bay, Vietnam">
+      </td>
+    </tr>
+    <tr class="caption-row">
+      <td>Fushimi Inari Shrine, Kyoto, Japan</td>
+      <td>Ha Long Bay, Vietnam</td>
+    </tr>
+  </table>
+  <p><small>Photos from Wikimedia Commons.</small></p>
+
+  <!-- bulleted list -->
+  <h2>Things I Enjoy Doing When I Travel</h2>
+  <ul>
+    <li>Trying local street food</li>
+    <li>Walking around with no plan</li>
+    <li>Riding trains and buses</li>
+    <li>Taking photos of everyday life</li>
+    <li>Visiting museums and historic sites</li>
+  </ul>
+
+  <!-- numbered list -->
+  <h2 id="dreams">My Top 5 Dream Destinations</h2>
+  <ol>
+    <li>Japan</li>
+    <li>Vietnam</li>
+    <li>Switzerland</li>
+    <li>New Zealand</li>
+    <li>Sweden</li>
+  </ol>
+
+  <!-- table -->
+  <h2>Comparing Three Cities</h2>
+  <table>
+    <tr>
+      <th>City</th>
+      <th>Country</th>
+      <th>Best season to visit</th>
+      <th>Famous for</th>
+    </tr>
+    <tr>
+      <td>Kyoto</td>
+      <td>Japan</td>
+      <td>Spring and fall</td>
+      <td>Temples and gardens</td>
+    </tr>
+    <tr>
+      <td>Hanoi</td>
+      <td>Vietnam</td>
+      <td>Fall (Oct-Nov) and spring (Mar-Apr)</td>
+      <td>Street food and Hoan Kiem Lake</td>
+    </tr>
+    <tr>
+      <td>Lucerne</td>
+      <td>Switzerland</td>
+      <td>Summer (late May to early Sept)</td>
+      <td>Chapel Bridge and the Lion Monument</td>
+    </tr>
+  </table>
+
+  <!-- links -->
+  <h2>Links</h2>
+  <ul>
+    <!-- external link -->
+    <li>Read about Kyoto on <a href="https://en.wikipedia.org/wiki/Kyoto">Wikipedia</a></li>
+
+    <!-- internal link, goes to #dreams on this page -->
+    <li>Jump to my <a href="#dreams">Top 5 Dream Destinations</a></li>
+
+    <!-- opens in a new tab -->
+    <li>Visit the <a href="https://www.japan.travel/en/" target="_blank">official Japan tourism site</a></li>
+  </ul>
+
+  <p><a href="#top">Back to top</a></p>
+
+</body>
+</html>
