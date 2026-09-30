@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Opacity and Hover</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #0b0f1a;
+  color: #e6e9f0;
+  text-align: center;
+}
+
+/* ---------- Table styling (CSS effects on the tables) ---------- */
+table {
+  margin: 30px auto;                 /* centers each table on the page */
+  border: 3px solid #4a6fa5;
+  border-radius: 12px;               /* rounded corners */
+  box-shadow: 0 0 25px rgba(74, 111, 165, 0.7);  /* glowing shadow */
+  background: linear-gradient(135deg, #1c2538, #0b0f1a);  /* gradient */
+  padding: 10px;
+  transition: transform 0.3s;
+}
+
+/* Table lifts up slightly when you hover over it */
+table:hover {
+  transform: translateY(-6px);
+}
+
+td {
+  padding: 15px;
+}
+
+caption {
+  font-weight: bold;
+  padding-bottom: 8px;
+  color: #8fb3e8;
+}
+
+/* ---------- Image 1: starts faded, becomes solid on hover ---------- */
+.fade-in {
+  opacity: 0.3;
+  transition: opacity 0.5s;
+}
+
+.fade-in:hover {
+  opacity: 1.0;
+}
+
+/* ---------- Image 2: starts solid, fades and zooms on hover ---------- */
+.fade-out {
+  opacity: 1.0;
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.fade-out:hover {
+  opacity: 0.5;
+  transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+
+<h2>Opacity and :hover</h2>
+<p>Hover over each image to see a different opacity effect.</p>
+
+<!-- Table 1 -->
+<table>
+  <caption>Venator: opacity 0.3 &rarr; 1.0</caption>
+  <tr>
+    <td>
+      <img class="fade-in" src="venator.png" alt="Venator-class Star Destroyer above a planet" width="400" height="225">
+    </td>
+  </tr>
+</table>
+
+<!-- Table 2 -->
+<table>
+  <caption>Imperial Star Destroyer: opacity 1.0 &rarr; 0.5 with zoom</caption>
+  <tr>
+    <td>
+      <img class="fade-out" src="star-destroyer.png" alt="Imperial Star Destroyer in space" width="400" height="300">
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
