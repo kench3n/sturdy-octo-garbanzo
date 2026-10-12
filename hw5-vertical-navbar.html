@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HW5 - Vertical Navigation Bar</title>
+<style>
+* {
+  box-sizing: border-box; /* so padding doesnt make stuff wider */
+}
+
+html {
+  scroll-behavior: smooth; /* scrolls instead of jumping */
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background-color: #e9efe9;
+  color: #1d2b24;
+}
+
+/* sidebar */
+.sidebar {
+  position: fixed;
+  top: 20px;
+  bottom: 20px;
+  left: 20px;
+  width: 230px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(31, 77, 58, 0.12);
+  padding: 24px 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column; /* needed so the user box can go at the bottom */
+}
+
+/* logo */
+.brand {
+  display: flex;
+  align-items: center;
+  padding: 0 24px 20px 24px;
+}
+
+.brand-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* circle */
+  background-color: #f2b134;
+  color: #1f4d3a;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px; /* same as height to center the M */
+  margin-right: 12px;
+}
+
+.brand-name {
+  font-size: 22px;
+  font-weight: bold;
+  color: #1f4d3a;
+}
+
+/* the little MAIN / WORKSPACE labels */
+.nav-label {
+  margin: 18px 24px 6px 24px;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8a9a91;
+}
+
+.sidebar ul {
+  list-style-type: none; /* no bullets */
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar a {
+  display: block; /* makes the whole row clickable */
+  padding: 10px 24px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  color: #3c4a43;
+  text-decoration: none; /* no underline */
+  border-left: 4px solid transparent; /* so the text doesnt shift when active */
+}
+
+.sidebar a:hover {
+  background-color: #f3f6f3;
+  color: #1f4d3a;
+  padding-left: 30px; /* moves over a bit on hover */
+}
+
+/* current page */
+.sidebar a.active {
+  border-left: 4px solid #1f4d3a;
+  background-color: #e3ede6;
+  color: #1f4d3a;
+  font-weight: bold;
+}
+
+/* signed in box */
+.user-box {
+  margin-top: auto; /* pushes it to the bottom */
+  margin-left: 16px;
+  margin-right: 16px;
+  padding: 14px;
+  background-color: #1f4d3a;
+  border-radius: 14px;
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+}
+
+.user-box p {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.user-box a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 8px;
+  background-color: #f2b134;
+  color: #1f4d3a;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.user-box a:hover {
+  background-color: #ffc95c;
+  padding-left: 12px; /* dont want this one to move */
+  color: #1f4d3a;
+}
+
+/* main content */
+.main {
+  margin-left: 270px; /* has to be wider than the sidebar or it goes under it */
+  padding: 40px 48px;
+}
+
+/* green banner */
+.hero {
+  background-color: #1f4d3a;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 32px;
+}
+
+.hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 36px;
+}
+
+.hero h1 span {
+  color: #f2b134;
+}
+
+.hero p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #cfe0d5;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 22px 28px;
+  margin-bottom: 20px;
+  border-top: 5px solid #f2b134;
+}
+
+.card h2 {
+  margin: 0 0 8px 0;
+  font-size: 22px;
+  color: #1f4d3a;
+}
+
+.card p {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: #4b5a52;
+}
+
+/* settings and log out next to each other */
+.card-row {
+  display: flex;
+  align-items: stretch; /* keeps them the same height */
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.card-row .card {
+  flex: 1; /* half and half */
+  margin-bottom: 0;
+}
+
+/* phone size */
+@media screen and (max-width: 700px) {
+  .card-row {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative; /* menu goes on top */
+    top: 0;
+    left: 0;
+    width: auto;
+    margin: 16px;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 0 16px 24px 16px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- nav -->
+<nav class="sidebar">
+  <div class="brand">
+    <div class="brand-badge">M</div>
+    <div class="brand-name">MyApp</div>
+  </div>
+
+  <p class="nav-label">Main</p>
+  <ul>
+    <li><a class="active" href="#dashboard">⌂ &nbsp;Dashboard</a></li>
+    <li><a href="#analytics">↗ &nbsp;Analytics</a></li>
+  </ul>
+
+  <p class="nav-label">Workspace</p>
+  <ul>
+    <li><a href="#projects">▤ &nbsp;Projects</a></li>
+    <li><a href="#team">☺ &nbsp;Team</a></li>
+    <li><a href="#messages">✉ &nbsp;Messages</a></li>
+    <li><a href="#documents">❐ &nbsp;Documents</a></li>
+  </ul>
+
+  <p class="nav-label">Account</p>
+  <ul>
+    <li><a href="#settings">⚙ &nbsp;Settings</a></li>
+  </ul>
+
+  <div class="user-box">
+    <p>Signed in as <strong>User</strong></p>
+    <a href="#logout">Log out →</a>
+  </div>
+</nav>
+
+<!-- main -->
+<div class="main">
+
+  <div class="hero" id="dashboard">
+    <h1>Welcome to your <span>Dashboard</span></h1>
+    <p>Pick a page from the menu on the left to jump to it.</p>
+  </div>
+
+  <div class="card" id="analytics">
+    <h2>Analytics</h2>
+    <p>Charts and reports about how the app is being used will go here.</p>
+  </div>
+
+  <div class="card" id="projects">
+    <h2>Projects</h2>
+    <p>A list of current and past projects will go here.</p>
+  </div>
+
+  <div class="card" id="team">
+    <h2>Team</h2>
+    <p>Team members and their roles will go here.</p>
+  </div>
+
+  <div class="card" id="messages">
+    <h2>Messages</h2>
+    <p>Your inbox and recent conversations will go here.</p>
+  </div>
+
+  <div class="card" id="documents">
+    <h2>Documents</h2>
+    <p>Uploaded files and shared documents will go here.</p>
+  </div>
+
+  <div class="card-row">
+    <div class="card" id="settings">
+      <h2>Settings</h2>
+      <p>Account and app preferences will go here.</p>
+    </div>
+
+    <div class="card" id="logout">
+      <h2>Log out</h2>
+      <p>You would be signed out of MyApp from here.</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
