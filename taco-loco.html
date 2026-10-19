@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taco Loco | Scratch-Made Street Tacos</title>
+  <style>
+    /* Colors */
+    :root {
+      --red: #c0392b;
+      --red-light: #e74c3c;
+      --yellow: #f4c03a;
+      --dark: #2d2d2d;
+      --cream: #fdf8ee;
+      --green: #2f7d4f;
+      --text: #2b2b2b;
+    }
+
+    /* Base styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--red);
+      display: flex;
+      align-items: stretch;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 22px 30px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      font-size: 40px;
+      animation: wiggle 3s ease-in-out infinite;
+    }
+
+    @keyframes wiggle {
+      0%, 80%, 100% { transform: rotate(0deg); }
+      85% { transform: rotate(-12deg); }
+      90% { transform: rotate(10deg); }
+      95% { transform: rotate(-6deg); }
+    }
+
+    .logo-text {
+      color: var(--yellow);
+      font-size: 40px;
+      font-weight: bold;
+      line-height: 1.1;
+      text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.18);
+    }
+
+    /* Navigation */
+    nav {
+      flex: 1;
+    }
+
+    nav > ul {
+      list-style: none;
+      margin: 0;
+      padding: 0 10px 0 0;
+      display: flex;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    nav > ul > li {
+      position: relative;
+    }
+
+    nav > ul > li > a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 32px;
+      color: #ffffff;
+      font-size: 22px;
+      text-decoration: none;
+      transition: background-color 0.2s;
+    }
+
+    nav > ul > li:hover > a,
+    nav > ul > li:focus-within > a {
+      background-color: rgba(0, 0, 0, 0.12);
+    }
+
+    /* Dropdown arrow */
+    .has-dropdown > a::after {
+      content: "\25BE";
+      font-size: 14px;
+      margin-left: 8px;
+      opacity: 0.8;
+    }
+
+    /* Dropdown menu */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 302px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      background-color: var(--dark);
+      border-top: 4px solid #f5b31b;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.3);
+    }
+
+    .has-dropdown:hover .dropdown,
+    .has-dropdown:focus-within .dropdown {
+      display: block;
+    }
+
+    .dropdown li + li {
+      border-top: 1px solid #444444;
+    }
+
+    .dropdown a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 34px;
+      height: 70px;
+      color: #e8e8e8;
+      font-size: 22px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background-color 0.2s, padding-left 0.2s;
+    }
+
+    .dropdown a:hover,
+    .dropdown a:focus {
+      background-color: var(--red-light);
+      color: #ffffff;
+      padding-left: 40px;
+    }
+
+    /* Taco image in menu */
+    .menu-taco {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--yellow);
+    }
+
+    /* Submenu tags */
+    .tag {
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--dark);
+      background-color: var(--yellow);
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 70px 30px 60px;
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-text {
+      flex: 1.1;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--green);
+      font-weight: bold;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      line-height: 1.05;
+      margin: 0 0 20px;
+      color: var(--dark);
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #4a4a4a;
+      margin: 0 0 28px;
+      max-width: 560px;
+    }
+
+    .promise {
+      list-style: none;
+      padding: 0;
+      margin: 28px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 26px;
+      font-weight: bold;
+      color: var(--dark);
+    }
+
+    .promise li::before {
+      content: "\2714";
+      color: var(--green);
+      margin-right: 8px;
+    }
+
+    .hero-img-wrap {
+      flex: 1;
+    }
+
+    .hero-img {
+      width: 100%;
+      aspect-ratio: 4 / 3.4;
+      object-fit: cover;
+      border-radius: 58% 42% 52% 48% / 46% 54% 46% 54%;
+      border: 8px solid #ffffff;
+      box-shadow: 0 22px 40px rgba(192, 57, 43, 0.25);
+      transition: transform 0.5s ease, border-radius 0.8s ease;
+    }
+
+    .hero-img:hover {
+      transform: rotate(-3deg) scale(1.03);
+      border-radius: 45% 55% 40% 60% / 55% 45% 55% 45%;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 15px 34px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: opacity 0.25s ease;
+      margin: 0 10px 10px 0;
+    }
+
+    .btn-primary {
+      background-color: var(--red);
+      color: #ffffff;
+      box-shadow: 0 6px 14px rgba(192, 57, 43, 0.35);
+    }
+
+    .btn-outline {
+      color: var(--red);
+      border: 2px solid var(--red);
+      padding: 13px 32px;
+    }
+
+    .btn-yellow {
+      background-color: var(--yellow);
+      color: var(--dark);
+    }
+
+    .btn:hover {
+      opacity: 0.7;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 50px 30px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .section-title h2 {
+      font-size: 36px;
+      margin: 0 0 6px;
+      color: var(--dark);
+    }
+
+    .section-title p {
+      margin: 0;
+      color: #666666;
+    }
+
+    /* Menu cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 26px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-img {
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      filter: saturate(0.85);
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+      filter: saturate(1.25);
+    }
+
+    .card-body {
+      padding: 18px 20px 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .price {
+      color: var(--red);
+      font-size: 17px;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 15px;
+      color: #555555;
+    }
+
+    /* Specials table */
+    .split {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .split > div {
+      flex: 1;
+    }
+
+    .split h2 {
+      font-size: 30px;
+      margin: 0 0 18px;
+    }
+
+    .specials-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background-color: #ffffff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    }
+
+    .specials-table th {
+      background-color: var(--red);
+      color: #ffffff;
+      text-align: left;
+      padding: 14px 20px;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .specials-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid #f0e6d6;
+    }
+
+    .specials-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .specials-table td:first-child {
+      font-weight: bold;
+      color: var(--dark);
+      width: 36%;
+    }
+
+    .specials-table tbody tr:nth-child(even) {
+      background-color: #fff7e6;
+    }
+
+    .specials-table tbody tr:hover {
+      background-color: #fde9c4;
+    }
+
+    /* Our Story box */
+    .story {
+      background-color: #ffffff;
+      padding: 30px 32px;
+      border: 14px solid transparent;
+      border-image: repeating-linear-gradient(
+        45deg,
+        var(--red) 0 12px,
+        var(--yellow) 12px 24px,
+        var(--green) 24px 36px,
+        #ffffff 36px 42px
+      ) 14;
+    }
+
+    .story p {
+      margin: 0 0 14px;
+      color: #4a4a4a;
+    }
+
+    .story .signature {
+      font-style: italic;
+      color: var(--red);
+      margin: 0;
+    }
+
+    /* Order banner */
+
+    .order-banner {
+      max-width: 1120px;
+      margin: 30px auto 70px;
+      padding: 54px 40px;
+      text-align: center;
+      color: #ffffff;
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(244, 192, 58, 0.45), transparent 40%),
+        linear-gradient(120deg, #c0392b 0%, #e74c3c 55%, #f39c12 100%);
+      box-shadow: 0 18px 36px rgba(192, 57, 43, 0.3);
+    }
+
+    .order-banner h2 {
+      font-size: 38px;
+      margin: 0 0 10px;
+      text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.25);
+    }
+
+    .order-banner p {
+      font-size: 18px;
+      margin: 0 0 26px;
+      opacity: 0.95;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: #cfcfcf;
+      padding: 50px 30px 24px;
+    }
+
+    .footer-grid {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+    }
+
+    .footer-grid h3 {
+      color: var(--yellow);
+      margin: 0 0 12px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .footer-grid p {
+      margin: 0 0 6px;
+      font-size: 15px;
+    }
+
+    .footer-brand {
+      color: var(--yellow);
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    footer a {
+      color: #cfcfcf;
+    }
+
+    footer a:hover {
+      color: var(--yellow);
+    }
+
+    .copyright {
+      max-width: 1180px;
+      margin: 36px auto 0;
+      padding-top: 18px;
+      border-top: 1px solid #444444;
+      font-size: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* Media queries */
+    @media (max-width: 1000px) {
+      header {
+        flex-direction: column;
+      }
+
+      nav > ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+      }
+
+      nav > ul > li > a {
+        padding: 14px 18px;
+        font-size: 18px;
+      }
+
+      .hero,
+      .split {
+        flex-direction: column;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      nav > ul {
+        position: relative;
+      }
+
+      nav > ul > li {
+        position: static;
+      }
+
+      .dropdown {
+        left: 0;
+        right: 0;
+        min-width: 0;
+      }
+
+      .dropdown a {
+        font-size: 18px;
+        height: 56px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header and navigation -->
+  <header>
+    <a href="#top" class="logo" id="top">
+      <span class="logo-icon">&#127790;</span>
+      <span class="logo-text">TACO<br>LOCO</span>
+    </a>
+
+    <nav>
+      <ul>
+        <li><a href="#top">Home</a></li>
+
+        <li class="has-dropdown">
+          <a href="#menu">Menu</a>
+          <ul class="dropdown">
+            <li>
+              <a href="#menu">Tacos
+                <img class="menu-taco"
+                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Tacos_2.jpg/120px-Tacos_2.jpg"
+                     alt="Al pastor tacos with lime">
+              </a>
+            </li>
+            <li><a href="#menu">Burritos &amp; Bowls</a></li>
+            <li><a href="#menu">Quesadillas</a></li>
+            <li><a href="#menu">Sides &amp; Snacks</a></li>
+            <li><a href="#menu">Drinks</a></li>
+            <li><a href="#menu">Desserts</a></li>
+          </ul>
+        </li>
+
+        <li class="has-dropdown">
+          <a href="#specials">Specials</a>
+          <ul class="dropdown">
+            <li><a href="#specials">Taco Tuesday</a></li>
+            <li><a href="#specials">Happy Hour (3&ndash;6 PM)</a></li>
+            <li><a href="#specials">Lunch Combos</a></li>
+            <li><a href="#specials">Family Taco Kit</a></li>
+            <li><a href="#specials">Birria Tacos <span class="tag">Limited</span></a></li>
+          </ul>
+        </li>
+
+        <li><a href="#contact">Locations</a></li>
+
+        <li class="has-dropdown">
+          <a href="#story">About Us</a>
+          <ul class="dropdown">
+            <li><a href="#story">Our Story</a></li>
+            <li><a href="#story">Meet the Kitchen</a></li>
+            <li><a href="#story">Our Ingredients</a></li>
+            <li><a href="#contact">Careers <span class="tag">Hiring</span></a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#order">Order Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-text">
+      <span class="eyebrow">Denver's scratch-made taqueria</span>
+      <h1>Real street tacos.<br><span>Made fresh.<br>Made fast.</span></h1>
+      <p>
+        Taco Loco brings Mexico City street food to Denver without the shortcuts.
+        We press our corn tortillas by hand every morning, slow-roast our al pastor
+        on a vertical spit, and blend five salsas from scratch every day. Your order
+        is ready in about 10 minutes, and most tacos cost less than $4.
+      </p>
+      <a href="#order" class="btn btn-primary">Order Now</a>
+      <a href="#menu" class="btn btn-outline">See the Menu</a>
+
+      <ul class="promise">
+        <li>Hand-pressed tortillas</li>
+        <li>Salsas made daily</li>
+        <li>Ready in ~10 minutes</li>
+      </ul>
+    </div>
+
+    <div class="hero-img-wrap">
+      <img class="hero-img"
+           src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/%28El_Flaco%29_Al_Pastor_Tacos.jpg/960px-%28El_Flaco%29_Al_Pastor_Tacos.jpg"
+           alt="A tray of al pastor tacos topped with cilantro and onion">
+    </div>
+  </div>
+
+  <!-- Menu cards -->
+  <section id="menu">
+    <div class="section-title">
+      <h2>Fan Favorites</h2>
+      <p>Everything is made in-house, from the tortillas to the salsas.</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg/500px-001_Tacos_de_carnitas%2C_carne_asada_y_al_pastor.jpg"
+               alt="Carnitas, carne asada, and al pastor tacos with lime and radish">
+        </div>
+        <div class="card-body">
+          <h3>Street Tacos <span class="price">$3.75</span></h3>
+          <p>Al pastor, carnitas, or carne asada on a fresh corn tortilla with onion and cilantro.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Steak_burrito_bowl_at_La_Casa_Restaurant_in_Sonoma%2C_California_-_Sarah_Stierch_03.jpg/500px-Steak_burrito_bowl_at_La_Casa_Restaurant_in_Sonoma%2C_California_-_Sarah_Stierch_03.jpg"
+               alt="Steak burrito bowl with lettuce, cheese, guacamole and sour cream">
+        </div>
+        <div class="card-body">
+          <h3>Loco Bowl <span class="price">$11.50</span></h3>
+          <p>Cilantro-lime rice, black beans, your choice of meat, guac, and pico de gallo.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Quesadilla_plate%2C_New_Orleans_November_2016.jpg/500px-Quesadilla_plate%2C_New_Orleans_November_2016.jpg"
+               alt="Quesadilla plate with rice, beans and a crispy taco">
+        </div>
+        <div class="card-body">
+          <h3>Quesadilla Plate <span class="price">$10.25</span></h3>
+          <p>Melted Oaxaca cheese and grilled chicken, served with rice and refried beans.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Chips%2C_guacamole%2C_three_salsas.jpg/500px-Chips%2C_guacamole%2C_three_salsas.jpg"
+               alt="Tortilla chips with guacamole and three salsas">
+        </div>
+        <div class="card-body">
+          <h3>Chips &amp; Salsas <span class="price">$5.50</span></h3>
+          <p>Warm tortilla chips with guacamole, roja, and tomatillo verde.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specials and Our Story -->
+  <section id="specials">
+    <div class="split">
+      <div>
+        <h2>Weekly Specials</h2>
+        <table class="specials-table">
+          <thead>
+            <tr>
+              <th>Day</th>
+              <th>Deal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Monday</td>
+              <td>Free chips &amp; salsa with any bowl</td>
+            </tr>
+            <tr>
+              <td>Taco Tuesday</td>
+              <td>$2 al pastor and carnitas tacos, all day</td>
+            </tr>
+            <tr>
+              <td>Wednesday</td>
+              <td>Quesadilla + agua fresca for $11</td>
+            </tr>
+            <tr>
+              <td>Thursday</td>
+              <td>Birria tacos with consom&eacute; (limited time)</td>
+            </tr>
+            <tr>
+              <td>Friday</td>
+              <td>Happy Hour 3&ndash;6 PM: half-price sides</td>
+            </tr>
+            <tr>
+              <td>Weekend</td>
+              <td>Family Taco Kit: 12 tacos, rice, beans &amp; salsas for $39</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="story">
+        <h2>Our Story</h2>
+        <div class="story">
+          <p>
+            Taco Loco started as a cart with two griddles, parked outside a Denver
+            ballpark on game days. We wanted tacos that tasted like the ones from the
+            street stands in Mexico City: tortillas pressed by hand, and meat that had
+            been cooking since morning.
+          </p>
+          <p>
+            We still do it that way. Someone is mixing masa before we open, and the
+            al pastor turns on the spit all day. The salsas are made from fresh chiles
+            every morning, so Tuesday's verde might be a little hotter than Monday's.
+          </p>
+          <p class="signature">Come hungry. Leave a little loco.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order banner -->
+  <div class="order-banner" id="order">
+    <h2>Hungry? Your tacos are 10 minutes away.</h2>
+    <p>Order online for pickup or delivery, and skip the line.</p>
+    <a href="#order" class="btn btn-yellow">Start Your Order</a>
+  </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">&#127790; TACO LOCO</div>
+        <p>Scratch-made street tacos in Denver, CO.</p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <p>Mon&ndash;Thu: 11 AM &ndash; 9 PM</p>
+        <p>Fri&ndash;Sat: 11 AM &ndash; 11 PM</p>
+        <p>Sun: 11 AM &ndash; 8 PM</p>
+      </div>
+      <div>
+        <h3>Visit</h3>
+        <p>Downtown Denver, CO</p>
+        <p><a href="#contact">Get directions</a></p>
+      </div>
+      <div>
+        <h3>Follow</h3>
+        <p><a href="#contact">Instagram</a></p>
+        <p><a href="#contact">TikTok</a></p>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <span>Made by Ken Lin &copy; 2026</span>
+      <span>Food photos from Wikimedia Commons.</span>
+    </div>
+  </footer>
+
+</body>
+</html>
