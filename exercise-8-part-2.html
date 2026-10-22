@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2-Level Horizontal Nav with CSS Sprites</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; background: #f4f4f4; }
+
+  /* ===== Level 1: horizontal nav using a CSS sprite =====
+     600x100 sprite: top row = normal, bottom row = hover. */
+  nav {
+    height: 90px;                  /* 50px level-1 bar + 40px level-2 bar */
+    background: linear-gradient(#222 50px, #333 50px);
+  }
+  nav > ul {
+    list-style: none;
+    display: flex;
+    position: relative;
+    max-width: 600px;              /* 4 items x 150px, centered on the page */
+    margin: 0 auto;
+  }
+  nav > ul > li { position: relative; }
+  nav > ul > li > a {
+    display: block;
+    width: 150px;
+    height: 50px;
+    text-indent: -9999px;          /* hide text, show sprite only */
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='100'%3E%3Crect width='600' height='50' fill='%23222'/%3E%3Crect y='50' width='600' height='50' fill='%23c0392b'/%3E%3Cg fill='%23fff' font-family='Arial,sans-serif' font-size='16' font-weight='bold' text-anchor='middle'%3E%3Ctext x='75' y='31'%3EHome%3C/text%3E%3Ctext x='225' y='31'%3EAbout%3C/text%3E%3Ctext x='375' y='31'%3EServices%3C/text%3E%3Ctext x='525' y='31'%3EContact%3C/text%3E%3Ctext x='75' y='81'%3EHome%3C/text%3E%3Ctext x='225' y='81'%3EAbout%3C/text%3E%3Ctext x='375' y='81'%3EServices%3C/text%3E%3Ctext x='525' y='81'%3EContact%3C/text%3E%3C/g%3E%3C/svg%3E") no-repeat;
+  }
+  nav > ul > li > a.home     { background-position:    0   0; }
+  nav > ul > li > a.about    { background-position: -150px 0; }
+  nav > ul > li > a.services { background-position: -300px 0; }
+  nav > ul > li > a.contact  { background-position: -450px 0; }
+
+  nav > ul > li > a.home:hover     { background-position:    0   -50px; }
+  nav > ul > li > a.about:hover    { background-position: -150px -50px; }
+  nav > ul > li > a.services:hover,
+  nav > ul > li.has-dropdown:hover > a.services { background-position: -300px -50px; }
+  nav > ul > li > a.contact:hover  { background-position: -450px -50px; }
+
+  /* ===== Level 2: dropdown submenu, its own 450x80 sprite ===== */
+  nav > ul > li.has-dropdown { position: static; }
+  nav .dropdown {
+    list-style: none;
+    display: flex;                 /* level 2 is always visible: a second bar, same width as level 1 */
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 600px;
+  }
+  nav .dropdown li a {
+    display: block;
+    width: 200px;
+    height: 40px;
+    text-indent: -9999px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='80'%3E%3Crect width='600' height='40' fill='%23555'/%3E%3Crect y='40' width='600' height='40' fill='%23c0392b'/%3E%3Cg fill='%23fff' font-family='Arial,sans-serif' font-size='14' text-anchor='middle'%3E%3Ctext x='100' y='25'%3EWeb Design%3C/text%3E%3Ctext x='300' y='25'%3ESEO%3C/text%3E%3Ctext x='500' y='25'%3ESupport%3C/text%3E%3Ctext x='100' y='65'%3EWeb Design%3C/text%3E%3Ctext x='300' y='65'%3ESEO%3C/text%3E%3Ctext x='500' y='65'%3ESupport%3C/text%3E%3C/g%3E%3C/svg%3E") no-repeat;
+  }
+  nav .dropdown li a.web     { background-position:    0   0; }
+  nav .dropdown li a.seo     { background-position: -200px 0; }
+  nav .dropdown li a.support { background-position: -400px 0; }
+
+  nav .dropdown li a.web:hover     { background-position:    0   -40px; }
+  nav .dropdown li a.seo:hover     { background-position: -200px -40px; }
+  nav .dropdown li a.support:hover { background-position: -400px -40px; }
+
+  /* Content */
+  .content {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    text-align: center;
+  }
+  .content img {
+    max-width: 45%;
+    margin: 10px;
+    border: 4px solid #ddd;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="#home" class="home">Home</a></li>
+    <li><a href="#about" class="about">About</a></li>
+    <li class="has-dropdown">
+      <a href="#services" class="services">Services</a>
+      <ul class="dropdown">
+        <li><a href="#web" class="web">Web Design</a></li>
+        <li><a href="#seo" class="seo">SEO</a></li>
+        <li><a href="#support" class="support">Support</a></li>
+      </ul>
+    </li>
+    <li><a href="#contact" class="contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="content">
+  <h1>Welcome</h1>
+  <p>Two sample images below:</p>
+  <img src="https://picsum.photos/id/1015/400/250" alt="Mountain landscape">
+  <img src="https://picsum.photos/id/1016/400/250" alt="Forest path">
+</div>
+
+</body>
+</html>
