@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homework-6</title>
+    <style>
+        p {
+            color: indigo;
+            font-size: 18px;
+
+        }
+
+        header {
+            background-color: chocolate;
+            text-align: center;
+        }
+
+        footer {
+            background-color: chocolate;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+        }
+
+        nav a:hover {
+            color: burlywood;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: red;
+            border-radius: 12px;
+            background-color: rgba(0, 80, 126, 0.425);
+        }
+
+        @media (max-width: 480px) {
+            nav ul {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 18px;
+            }
+
+            .button {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+
+        <h1>JavaScript Statements</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
+    <p>JavaScript statements are separated by semicolons.</p>
+
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+
+    <a href="https://google.com" class="button">Google</a>
+
+    <footer>
+        Homework 6 &#128512;
+    </footer>
+    <script>
+
+        let a = 10;
+        let b = 5;
+        let c = a - b;
+        let d = 15;
+        let e = c + d;
+
+        document.getElementById("demo1").innerHTML = a;
+        document.getElementById("demo2").innerHTML = b;
+        document.getElementById("demo3").innerHTML = c;
+        document.getElementById("demo4").innerHTML = d;
+        document.getElementById("demo5").innerHTML = e;
+
+    </script>
+
+</body>
+
+</html>
